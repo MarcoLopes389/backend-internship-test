@@ -14,6 +14,6 @@ const deleteRestaurantController = new DeleteRestaurantController()
 router.get('/', listRestaurantsController.handle);
 router.post('/', createRestaurantController.handle);
 router.post('/:restaurantId/dish', createDishController.handle);
-router.delete('/:restaurantId', deleteRestaurantController.handle)
+router.delete('/', deleteRestaurantController.handle)
 
 export default router;
