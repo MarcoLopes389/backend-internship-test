@@ -7,6 +7,10 @@ class CreateDishController {
     const { name, price } = req.body;
     const { restaurantId } = req.params;
 
+    if(!name || !price || !restaurantId) {
+      return res.sendStatus(400)
+    }
+
     const createDishUseCase = new CreateDishUseCase();
     const dish = await createDishUseCase.execute({ name, price, restaurantId });
 
