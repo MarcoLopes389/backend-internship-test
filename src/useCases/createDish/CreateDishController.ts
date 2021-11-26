@@ -4,17 +4,13 @@ import { CreateDishUseCase } from "./CreateDishUseCase";
 
 class CreateDishController {
   async handle(req: Request, res: Response): Promise<Response> {
-
-    /* 
-    @TODO - 
-      pegar o id do restaurante dos parâmetros de rota
-      pegar o nome e o preço do corpo da requisição
-    */
+    const { name, price } = req.body;
+    const { restaurantId } = req.params;
 
     const createDishUseCase = new CreateDishUseCase();
-    // const dish = await createDishUseCase.execute({ name, price, restaurantId });
+    const dish = await createDishUseCase.execute({ name, price, restaurantId });
 
-    // return res.status(201).json(dish);
+    return res.status(201).json(dish);
   }
 }
 

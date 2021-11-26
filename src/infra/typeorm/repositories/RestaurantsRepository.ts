@@ -13,9 +13,8 @@ class RestaurantsRepository implements IRestaurantRepository {
   }
 
   async list(): Promise<Restaurant[]> {
-    /*
-      @TODO - implementar a listagem pelo ORM
-    */
+    const restaurants = this.repository.find({relations: ['dishes']})
+    return restaurants
   }
 
   async create({ name, phone, dishes }: ICreateRestaurantDTO): Promise<Restaurant> {
@@ -26,10 +25,7 @@ class RestaurantsRepository implements IRestaurantRepository {
   }
 
   async delete(restaurantId: string): Promise<void> {
-    /*
-      @TODO - implementar a deleção do restaurante no ORM com o id informado
-    */
-    throw new Error('Method not implemented.');
+    await this.repository.delete(restaurantId)
   }
 }
 

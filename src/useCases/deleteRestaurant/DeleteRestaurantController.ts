@@ -4,15 +4,11 @@ import { DeleteRestaurantUseCase } from "./DeleteRestaurantUseCase";
 
 class DeleteRestaurantController {
   async handle(req: Request, res: Response): Promise<Response> {
-    const restaurantId = '';
-
-    /* 
-      @TODO - obter o id do restaurante dos parametros de rota e enviá-lo para o useCase 
-    */
+    const { restaurantId } = req.params;
 
     const deleteRestaurantUseCase = new DeleteRestaurantUseCase();
-    await deleteRestaurantUseCase.execute(restaurantId);
-    return res.status(204).send();
+    await deleteRestaurantUseCase.execute(restaurantId ? String(restaurantId) : '');
+    return res.sendStatus(204);
   }
 }
 
